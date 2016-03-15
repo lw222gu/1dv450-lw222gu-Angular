@@ -8,11 +8,14 @@
  * Controller of the clientApp
  */
 angular.module('clientApp')
-  .controller('LoginCtrl', function ($http, $scope, API) {
+  .controller('LoginCtrl', function ($http, $scope, API, $location) {
     var vm = this;
     console.log('I logincontrollern');
 
     vm.submit = function(){
+
+      // TODO: if username and password is provided
+
       var url = API.Url + '/auth';
 
       var params = {
@@ -30,7 +33,9 @@ angular.module('clientApp')
       var promise = $http.post(url, params, config);
 
       promise.success(function(data, status, headers, config){
-        console.log(data);
+        sessionStorage.setItem('userId', data.user_id);
+        sessionStorage.setItem('jwt', data.token);
+        $location.path('/profile');
         console.log(status);
         console.log(headers);
         console.log(config);
@@ -41,10 +46,9 @@ angular.module('clientApp')
         console.log(status);
         console.log(headers);
         console.log(config);
+        console.log("fel inloggningsuppgifter");
+        sessionStorage.setItem('userId', null);
+        sessionStorage.setItem('jwt', null);
       });
-
-      console.log('loggar in');
-      console.log($scope.login.user.username);
-      console.log(API.ApiKey);
     };
   });
