@@ -39,4 +39,9 @@ angular
       .otherwise({
         redirectTo: '/'
       });
+  })
+
+  .constant('API', {
+    ApiKey: '1234567890',
+    Url: 'http://localhost:8080/api/v1'
   });
