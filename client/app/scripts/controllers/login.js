@@ -8,7 +8,7 @@
  * Controller of the clientApp
  */
 angular.module('clientApp')
-  .controller('LoginCtrl', function ($http, $scope, $rootScope, API, $location) {
+  .controller('LoginCtrl', function ($http, $scope, $rootScope, API, $location, Authenticated) {
     var vm = this;
     console.log('I logincontrollern');
 
@@ -33,26 +33,13 @@ angular.module('clientApp')
       var promise = $http.post(url, params, config);
 
       promise.success(function(data, status, headers, config){
-        sessionStorage.setItem('userId', data.user_id);
-        sessionStorage.setItem('jwt', data.token);
-        $rootScope.authenticated = true;
-        // $rootScope.jwt = data.token;
-        // $rootScope.userId = data.user_id;
         sessionStorage['authenticated'] = true;
         sessionStorage['jwt'] = data.token;
         sessionStorage['userId'] = data.user_id;
-        //$location.path('/profile');
         $location.path('/');
-        console.log(status);
-        console.log(headers);
-        console.log(config);
       });
 
       promise.error(function(data, status, headers, config){
-        console.log(data);
-        console.log(status);
-        console.log(headers);
-        console.log(config);
         console.log("fel inloggningsuppgifter");
         sessionStorage.setItem('userId', null);
         sessionStorage.setItem('jwt', null);

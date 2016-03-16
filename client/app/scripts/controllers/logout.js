@@ -9,5 +9,8 @@
  */
 angular.module('clientApp')
   .controller('LogoutCtrl', function ($location, $rootScope) {
-    // TODO: Remove this controller, and associated files.
+    sessionStorage.removeItem('authenticated');
+    sessionStorage.removeItem('jwt');
+    sessionStorage.removeItem('userId');
+    $location.path('/');
   });

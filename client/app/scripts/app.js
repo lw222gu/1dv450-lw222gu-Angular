@@ -19,27 +19,6 @@ angular
     'ngSanitize',
     'ngTouch'
   ])
-  .controller('appCtrl', ['$rootScope', '$location', function($rootScope, $location){
-      var vm = this;
-      console.log('jwt: ', sessionStorage['jwt']);
-      vm.authenticated = function(){
-        return $rootScope.authenticated;
-      }
-      vm.login = function(){
-        $location.path('/login');
-      }
-      vm.logout = function(){
-        sessionStorage['authenticated'] = false;
-        sessionStorage['jwt'] = null;
-        console.log('jwt: ', sessionStorage['jwt']);
-
-        sessionStorage['userId'] = null;
-        $rootScope.authenticated = false;
-        // $rootScope.jwt = null;
-        // $rootScope.userId = null;
-        $location.path('/index.html');
-      }
-  }])
   .config(function ($routeProvider, $locationProvider) {
     $routeProvider
       .when('/', {
@@ -63,7 +42,7 @@ angular
         controllerAs: 'profile'
       })
       .when('/logout', {
-        templateUrl: '',
+        templateUrl: 'views/logout.html',
         controller: 'LogoutCtrl',
         controllerAs: 'logout'
       })

@@ -20,8 +20,8 @@
         <li><a ng-href="#/">Contact</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><button class="btn" ng-click="app.login()" data-ng-show="!app.authenticated()">Logga in</button></li>
-        <li><button class="btn" ng-click="app.logout()" data-ng-show="app.authenticated()">Logga ut</button></li>
+        <li><a ng-href="/#/login" ng-show="!authenticated">Logga in</a></li>
+        <li><a ng-href="/#/logout" ng-show="authenticated">Logga ut</a></li>
       </ul>
     </div>
   </div>
