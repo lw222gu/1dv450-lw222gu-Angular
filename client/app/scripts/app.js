@@ -75,5 +75,5 @@ angular
 
   .constant('API', {
     ApiKey: '1234567890',
-    Url: 'http://localhost:8080/api/v1'
+    Url: 'http://localhost:4000/api/v1'
   });
